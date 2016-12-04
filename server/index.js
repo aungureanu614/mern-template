@@ -1,29 +1,40 @@
-import 'babel-polyfill';
-import express from 'express';
+var express = require('express');
+var mongoose = require("mongoose");
+var bodyParser = require("body-parser");
 
-const HOST = process.env.HOST;
-const PORT = process.env.PORT || 8080;
+var config = require("./config");
 
-console.log(`Server running in ${process.env.NODE_ENV} mode`);
+var app = express();
 
-const app = express();
+app.use(bodyParser.json());
 
-app.use(express.static(process.env.CLIENT_PATH));
+app.use(express.static(process.env.CLIENT_PATH || "build/dev/client/"));
 
-function runServer() {
-    return new Promise((resolve, reject) => {
-        app.listen(PORT, HOST, (err) => {
-            if (err) {
-                console.error(err);
-                reject(err);
-            }
+app.get("/", function(req, res) {
+  res.status(200).json({message: "Hello world"});
+});
 
-            const host = HOST || 'localhost';
-            console.log(`Listening on ${host}:${PORT}`);
-        });
+var runServer = function(callback) {
+  mongoose.connect(config.DATABASE_URL, function(err) {
+    if (err && callback) {
+      return callback(err);
+    }
+    app.listen(config.PORT, function() {
+      console.log("Listening on localhost:" + config.PORT);
+      if (callback) {
+        callback();
+      }
     });
-}
+  });
+};
 
 if (require.main === module) {
-    runServer();
+  runServer(function(err) {
+    if (err) {
+      console.error(err);
+    }
+  });
 }
+
+exports.app = app;
+exports.runServer = runServer;

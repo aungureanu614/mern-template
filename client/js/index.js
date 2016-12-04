@@ -1,3 +1,14 @@
-import 'babel-polyfill';
+var React = require("react");
+var ReactDOM = require("react-dom");
+var Provider = require("react-redux").Provider;
 
-console.log(`Client running in ${process.env.NODE_ENV} mode`);
+var store = require("./store"); 
+var routes = require("./routes");
+
+document.addEventListener("DOMContentLoaded", function(){
+  ReactDOM.render(
+    <Provider store={store}>
+      {routes}
+    </Provider>
+    , document.getElementById("app"));
+});
