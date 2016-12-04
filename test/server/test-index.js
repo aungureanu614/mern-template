@@ -1,20 +1,25 @@
-global.DATABASE_URL = 'mongodb://localhost/blog-tool-test';
+global.DATABASE_URL = 'mongodb://localhost/test';
 
 var chai = require('chai');
 var chaiHttp = require('chai-http');
+var should = chai.should();
 
 var server = require('../../server/index');
-
-var should = chai.should();
 var app = server.app;
+
+var Record = require("../../server/models/record");
 
 chai.use(chaiHttp);
 
-describe('App name', function() {
+describe('Server app', function() {
   before(function(done) {
     server.runServer(function() {
-      console.log("Init db here");
-      done();
+      Record.create({field: "Hello world"}, function(err, record) {
+        if (err) {
+          console.error(err);
+        }
+        done();
+      });
     });
   });
 
@@ -28,9 +33,20 @@ describe('App name', function() {
     });
   });
 
+  it("should connect to the database", function(done) {
+    Record.find(function(err, records) {
+      if (err) {
+        console.error(err);
+      }
+      records[0].field.should.equal("Hello world");
+      done();
+    });
+  });
+
   after(function(done) {
-    console.log("Clean up db here");
-    done();
+    Record.remove(function() {
+      done();
+    });
   });
 
 });
