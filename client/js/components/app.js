@@ -5,12 +5,14 @@ var hashHistory = router.hashHistory;
 
 var actions = require("../actions/actions");
 
-var App = function(props) {
-  return (
-    <div className="app">
-      {props.children}
-    </div>
-  );
-};
+var App = React.createClass({
+  render: function() {
+    return (
+      <div className="app">
+        {this.props.children}
+      </div>
+    );
+  }
+});
 
 module.exports = App;

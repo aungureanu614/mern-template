@@ -11,7 +11,7 @@ var App = require("./components/app");
 
 var routes = (
   <Router history={hashHistory}>
-    <Route path="/" component={AppContainer}>
+    <Route path="/" component={App}>
     </Route>
   </Router>
 );
