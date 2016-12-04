@@ -13,7 +13,6 @@ describe("Routes", function(){
         console.error(error);
       };
       var results = renderProps.components;      
-      console.log(results);
       results[1].displayName.should.equal("App");
     })
     done();

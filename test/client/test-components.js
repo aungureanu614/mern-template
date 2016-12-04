@@ -5,8 +5,8 @@ var should = require("chai").should();
 
 var App = require("../../client/js/components/app");
 var AppWrapper = shallow(<App />);
-describe("(Component) App", function() {
-	it("renders", function() {
+describe("App component", function() {
+	it("should render", function() {
 		AppWrapper.should.have.length(1);
 	});
 });
