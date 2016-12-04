@@ -6,12 +6,11 @@ var hashHistory = router.hashHistory;
 var actions = require("../actions/actions");
 
 var App = function(props) {
-    return(
-      <div className="app">
-        {props.children}
-      </div>
-    );
-  }
-});
+  return (
+    <div className="app">
+      {props.children}
+    </div>
+  );
+};
 
 module.exports = App;
