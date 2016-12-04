@@ -1,6 +1,6 @@
 # Thinkful Full Stack Template
 
-A template for developing and deploying full stack JavaScript apps.  Supports ES2015 on the client and server-side.
+A template for developing and deploying Javascript apps using the Mongo-Express-React-Node (MERN) stack.  Supports ES2015 on the client and server-side.
 
 ## Getting started
 
@@ -25,14 +25,18 @@ A template for developing and deploying full stack JavaScript apps.  Supports ES
 
 ```
 .
-├── client      Client-side code
-│   ├── assets  Images, videos, etc.
-│   ├── js      JavaScript
-│   └── scss    SASS stylesheets
-├── server      Server-side code
-└── test        Tests
-    ├── client  Client tests
-    └── server  Server tests
+├── client              Client-side code
+│   ├── assets          Images, videos, etc.
+│   ├── js              JavaScript
+│   │   ├── actions     Redux actions
+│   │   ├── components  React components
+│   │   └── reducers    Redux reducers
+│   └── scss            SASS stylesheets
+├── server              Server-side code
+│   └── models          Mongoose schemas 
+└── test                Tests
+    ├── client          Client tests
+    └── server          Server tests
 ```
 
 ## Deployment
