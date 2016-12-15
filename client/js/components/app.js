@@ -10,6 +10,7 @@ var App = React.createClass({
     return (
       <div className="app">
         {this.props.children}
+        
       </div>
     );
   }
